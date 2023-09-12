@@ -4,7 +4,7 @@ library(MASS)
 library("pracma")
 #####################
 n.index <- 6
-earliest_year = 20
+earliest_year = 22
 search_pattern <- "-\\d{3}"
 latest_year = 24
 search_pattern <- paste(as.character(earliest_year),search_pattern,sep="")
