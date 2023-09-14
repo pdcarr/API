@@ -4,7 +4,7 @@ library(MASS)
 library("pracma")
 #####################
 n.index <- 6
-earliest_year = 22
+earliest_year = 11
 search_pattern <- "-\\d{3}"
 latest_year = 24
 search_pattern <- paste(as.character(earliest_year),search_pattern,sep="")
@@ -48,6 +48,7 @@ persp(x=seq(0,n.index-1,1),
       ltheta=45,lphi=70,
       main="API Cases as of 10 September 2023")
 
+cat("\nTotal cases since 20",earliest_year,": ",n.data,sep="")
 cat("\nDocumented cases: ",case.count)
 cat("\nIdentified cases: ",id.count)
 cat("\nlow strangeness count: ",liz.count)
