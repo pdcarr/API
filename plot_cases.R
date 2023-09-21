@@ -18,6 +18,7 @@ ps.data.name <- "data/PS_10Sep23.csv"
 ps.data <- read.csv(header=TRUE,file=ps.data.name,as.is=TRUE,na.strings = "")
 z.data <- matrix(data=rep.int(rep.int(0,times=n.index),times=n.index),nrow=n.index,ncol=n.index) # zero matrix
 
+# comb through the data
 n.data <- length(ps.data$Probability)
 case.count <- 0
 id.count <- 0 
@@ -35,19 +36,30 @@ for (data.index in 1:n.data) {
   }
 }
 
+# perspective plot
+
 persp(x=seq(0,n.index-1,1),
       y = seq(0,n.index-1,1),
       z= z.data,
-      xlab = "Probability",
+      xlab = "Case Quality",
       ylab = "Strangeness",
       zlab="# of cases",
+      ticktype = "detailed",
       nticks=n.index,
       box=TRUE,
-      theta=60,phi=30,r=10,expand=1.1,
+      theta=150,phi=30,r=5,expand=1.2,
       col="lavender",shade=0.3,
-      ltheta=45,lphi=70,
-      main="API Cases as of 10 September 2023")
+      main=paste("\nDocumented cases since 20",earliest_year,": ",case.count,sep=""))
 
+#histogram
+strange_breaks <- 0:5
+hist(ps.data$Strangeness,
+      freq=TRUE,
+      xlab="Strangeness Rating",
+      breaks=strange_breaks,
+     col="aliceblue")
+
+# print out the results
 cat("\nTotal cases since 20",earliest_year,": ",n.data,sep="")
 cat("\nDocumented cases: ",case.count)
 cat("\nIdentified cases: ",id.count)
