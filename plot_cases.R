@@ -6,13 +6,14 @@ library("pracma")
 earliest_year = 19 # edit this to change the starting year
 latest_year = 24  # edit this to change the ending year
 ps.data.name <- "data/PS_10Sep23.csv"
-histogram_color <- "aliceblue"
+histogram_color <- "aliceblue"  # fill color for the histogram
 perspective_color <- "lavender"
 viewpoint_azimuth <- 150 # degrees
 viewpoint_elevation <- 30 # degrees
 viewpoint_distance <- 2
 perspective_shading <- 0.4
 perspective_expand <- 0.8
+strange_breaks <- 0:5
 
 ################ don't edit below this line unless you want to change the logic
 
@@ -62,7 +63,7 @@ persp(x=seq(0,n.index-1,1),
       main=paste("\nDocumented cases since 20",earliest_year,": ",case.count,sep=""))
 
 #histogram
-strange_breaks <- 0:5
+
 hist(ps.data$Strangeness,
       freq=TRUE,
       xlab="Strangeness Rating",
