@@ -2,19 +2,28 @@
 #options(digits=12)
 library(MASS) 
 library("pracma")
+#################### Edit this stuff to control the inputs
+earliest_year = 19 # edit this to change the starting year
+latest_year = 24  # edit this to change the ending year
+ps.data.name <- "data/PS_10Sep23.csv"
+histogram_color <- "aliceblue"
+perspective_color <- "lavender"
+viewpoint_azimuth <- 150 # degrees
+viewpoint_elevation <- 30 # degrees
+viewpoint_distance <- 2
+perspective_shading <- 0.4
+perspective_expand <- 0.8
+
+################ don't edit below this line unless you want to change the logic
+
+n.index <- 6  # number of possible vlaues
+search_pattern <- "-\\d{3}" # for searchign case numbers
 #####################
-n.index <- 6
-earliest_year = 11
-search_pattern <- "-\\d{3}"
-latest_year = 24
 search_pattern <- paste(as.character(earliest_year),search_pattern,sep="")
 for(yr in (earliest_year+1):latest_year) {
   search_pattern <- paste(as.character(yr),"|",search_pattern,sep="")
 }
 
-# name.2014.sheet <- "data/API 2014 Case Control Sheet_CLEANED.csv"
-ps.data.name <- "data/PS_10Sep23.csv"
-#sheet.2014 <- read.csv(header=TRUE,file=name.2014.sheet,stringsAsFactors=FALSE)
 ps.data <- read.csv(header=TRUE,file=ps.data.name,as.is=TRUE,na.strings = "")
 z.data <- matrix(data=rep.int(rep.int(0,times=n.index),times=n.index),nrow=n.index,ncol=n.index) # zero matrix
 
@@ -47,8 +56,9 @@ persp(x=seq(0,n.index-1,1),
       ticktype = "detailed",
       nticks=n.index,
       box=TRUE,
-      theta=150,phi=30,r=5,expand=1.2,
-      col="lavender",shade=0.3,
+      theta=viewpoint_azimuth,phi=viewpoint_elevation,
+      r=viewpoint_distance,expand=perspective_expand,
+      col=perspective_color,shade=perspective_shading,
       main=paste("\nDocumented cases since 20",earliest_year,": ",case.count,sep=""))
 
 #histogram
@@ -57,7 +67,7 @@ hist(ps.data$Strangeness,
       freq=TRUE,
       xlab="Strangeness Rating",
       breaks=strange_breaks,
-     col="aliceblue")
+     col=histogram_color)
 
 # print out the results
 cat("\nTotal cases since 20",earliest_year,": ",n.data,sep="")
