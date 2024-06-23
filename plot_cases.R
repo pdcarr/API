@@ -3,9 +3,9 @@
 library(MASS) 
 library("pracma")
 #################### Edit this stuff to control the inputs
-earliest_year = 19 # edit this to change the starting year
+earliest_year = 20 # edit this to change the starting year
 latest_year = 24  # edit this to change the ending year
-ps.data.name <- "data/PS_10Sep23.csv"
+ps.data.name <- "data/PS_table.csv"
 histogram_color <- "aliceblue"  # fill color for the histogram
 perspective_color <- "lavender"
 viewpoint_azimuth <- 150 # degrees
@@ -68,7 +68,7 @@ hist(ps.data$Strangeness,
       freq=TRUE,
       xlab="Strangeness Rating",
       breaks=strange_breaks,
-     col=histogram_color)
+     col=histogram_color,main = paste("\nDocumented cases since 20",earliest_year,": ",case.count,sep=""))
 
 # print out the results
 cat("\nTotal cases since 20",earliest_year,": ",n.data,sep="")
