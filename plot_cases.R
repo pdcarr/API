@@ -3,7 +3,7 @@
 library(MASS) 
 library("pracma")
 #################### Edit this stuff to control the inputs
-earliest_year = 20 # edit this to change the starting year
+earliest_year = 19 # edit this to change the starting year
 latest_year = 24  # edit this to change the ending year
 ps.data.name <- "data/PS_table.csv"
 histogram_color <- "aliceblue"  # fill color for the histogram
